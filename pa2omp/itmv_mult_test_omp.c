@@ -214,7 +214,7 @@ char *itmv_test(char *testmsg, int test_correctness, int n, int mtype, int t,
 
 char *itmv_test1() {
   return itmv_test("Test 1", TEST_CORRECTNESS, 16, !UPPER_TRIANGULAR, 2,
-                   BLOCK_MAPPING, 0);
+                   BLOCK_MAPPING, 2);
 }
 char *itmv_test2() {
   return itmv_test("Test 2", TEST_CORRECTNESS, 16, !UPPER_TRIANGULAR, 2,
@@ -270,12 +270,12 @@ char *itmv_test11a() {
                    4096, !UPPER_TRIANGULAR, 1024, BLOCK_DYNAMIC, 16);
 }
 char *itmv_test12() {
-  return itmv_test("Test 12: n=4K t=1K upper block mapping", !TEST_CORRECTNESS,
+  return itmv_test("Test 12: n=4K t=1K upper block mapping", TEST_CORRECTNESS,
                    4096, UPPER_TRIANGULAR, 1024, BLOCK_MAPPING, 0);
 }
 char *itmv_test13() {
   return itmv_test("Test 13: n=4K t=1K upper block cylic (r=1)",
-                   !TEST_CORRECTNESS, 4096, UPPER_TRIANGULAR, 1024,
+                   TEST_CORRECTNESS, 4096, UPPER_TRIANGULAR, 1024,
                    BLOCK_CYCLIC, 1);
 }
 char *itmv_test14() {
@@ -304,13 +304,12 @@ void run_all_tests(void) {
   mu_run_test(itmv_test7);
   mu_run_test(itmv_test8);
   mu_run_test(itmv_test8a);
-
-  /*
+  
   mu_run_test(itmv_test12);
   mu_run_test(itmv_test13);
-  mu_run_test(itmv_test14);
-  mu_run_test(itmv_test14a);
-  */
+  //mu_run_test(itmv_test14);
+  //mu_run_test(itmv_test14a);
+  
 }
 
 /*-------------------------------------------------------------------

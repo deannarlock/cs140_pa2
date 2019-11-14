@@ -2,7 +2,7 @@
 CC      = gcc
 CFLAGS  =   -O -fopenmp 
 LDFLAGS  =  -lm
-NUMTHREADS = 2
+NUMTHREADS = 8
 #CFLAGS  =  -O -DDEBUG1 -g
 
 OBJECTS=pi_mc_test_omp.o pi_mc_omp.o minunit.o
@@ -27,7 +27,7 @@ run-pi_mc_test_omp:
 
 run-itmv_mult_test_omp:
 	export OMP_NUM_THREADS=$(NUMTHREADS)
-	./run-itmv_mult_test_omp.sh $(NUMTHREADS)
+	./itmv_mult_test_omp $(NUMTHREADS)
 
 .c.o: 
 	$(CC)  $(CFLAGS) -c $<

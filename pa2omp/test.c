@@ -8,11 +8,7 @@ int main(int argc, char* argv[]) {
   int threadcnt = atoi(argv[1]);
   //omp_set_num_threads(num_threads);
 
-  int x[threadcnt] = { 0 };
-
-  for (int i = 0; i < threadcnt; i++) {
-    printf("i = %i, x[%i] = %i\n", i, i, x[i]);
-  }
+  int x = 0;;
   
   /*#pragma omp parallel private(x) num_threads(threadcnt)
   {
@@ -25,14 +21,13 @@ int main(int argc, char* argv[]) {
   */
 
 
-
+  int y = ceil(16.0/threadcnt);
+  printf("%i\n", y);
   
-#pragma omp parallel for
-  for (int i = 0; i < 20; i++) {
-    x[omp_get_thread_num()]++;
-    printf("Thread: %i, i=%i\n", omp_get_thread_num(), x);
+#pragma omp parallel for num_threads(threadcnt)
+  for (int i = 0; i < 16; i++) {
+    printf("Thread: %i, i=%i\n", omp_get_thread_num(), i);
   }
-  printf("%i\n", x);
   
   return 0;
 }
