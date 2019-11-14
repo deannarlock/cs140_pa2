@@ -26,13 +26,14 @@ run-pi_mc_test_omp:
 	./pi_mc_test_omp $(NUMTHREADS)
 
 run-itmv_mult_test_omp:
-	sbatch -v run-itmv_mult_test_omp.sh
+	export OMP_NUM_THREADS=$(NUMTHREADS)
+	./run-itmv_mult_test_omp.sh $(NUMTHREADS)
 
 .c.o: 
 	$(CC)  $(CFLAGS) -c $<
 
 clean:
-	rm  *.o $(TARGET)
+	rm  *.o $(TARGET) test
 
 cleanlog:
 	rm  job*.out
