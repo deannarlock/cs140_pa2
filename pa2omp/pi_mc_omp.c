@@ -32,8 +32,7 @@ void parallel_loop(int threadcnt) {
   // Set this to thread id when use OpenMP.
   int tid = omp_get_thread_num();
 
-
-#pragma omp parallel for private(x) reduction(+ : sum) num_threads(threadcnt)
+#pragma omp parallel for private(x, y, distance_squared) reduction(+ : sum) num_threads(threadcnt)
   for (toss = 0; toss < number_of_tosses; toss++) {
     x = 2LL * rand_r(&tid) / ((double)RAND_MAX) - 1.0;
     y = 2LL * rand_r(&tid) / ((double)RAND_MAX) - 1.0;

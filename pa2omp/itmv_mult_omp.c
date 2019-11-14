@@ -86,7 +86,7 @@ void parallel_itmv_mult(int threadcnt, int mappingtype, int chunksize) {
     
 #pragma omp parallel num_threads(threadcnt)
     {
-      #pragma omp for schedule(runtime)
+#pragma omp for private(vector_y) schedule(runtime)
       for (i = 0; i < matrix_dim; i++) {
 	mv_compute(i);
       }
